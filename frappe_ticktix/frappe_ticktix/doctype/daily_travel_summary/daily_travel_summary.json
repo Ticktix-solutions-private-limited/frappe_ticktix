@@ -1,0 +1,183 @@
+{
+ "actions": [],
+ "allow_import": 1,
+ "autoname": "hash",
+ "creation": "2026-04-01 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "summary_date",
+  "column_break_1",
+  "status",
+  "processed_at",
+  "metrics_section",
+  "total_distance_km",
+  "total_travel_time",
+  "column_break_2",
+  "average_speed_kmh",
+  "total_points",
+  "raw_data_count",
+  "error_section",
+  "error_log"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1,
+   "search_index": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "summary_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Summary Date",
+   "reqd": 1,
+   "search_index": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Pending\nProcessing\nCompleted\nFailed",
+   "search_index": 1,
+   "in_standard_filter": 1
+  },
+  {
+   "fieldname": "processed_at",
+   "fieldtype": "Datetime",
+   "label": "Processed At",
+   "read_only": 1
+  },
+  {
+   "fieldname": "metrics_section",
+   "fieldtype": "Section Break",
+   "label": "Travel Metrics"
+  },
+  {
+   "default": "0",
+   "description": "Total kilometres travelled after noise filtering. Rounded to 3 decimal places.",
+   "fieldname": "total_distance_km",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Total Distance (km)",
+   "precision": "3"
+  },
+  {
+   "description": "Total active movement time in HH:MM:SS format. Excludes idle periods and session gaps.",
+   "fieldname": "total_travel_time",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Total Travel Time"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "description": "Average speed during active movement segments (km/h).",
+   "fieldname": "average_speed_kmh",
+   "fieldtype": "Float",
+   "label": "Average Speed (km/h)",
+   "precision": "2"
+  },
+  {
+   "default": "0",
+   "description": "Count of GPS points used in calculation after noise filtering.",
+   "fieldname": "total_points",
+   "fieldtype": "Int",
+   "label": "Valid GPS Points"
+  },
+  {
+   "default": "0",
+   "description": "Count of all raw GPS points fetched before any filtering.",
+   "fieldname": "raw_data_count",
+   "fieldtype": "Int",
+   "label": "Raw Point Count"
+  },
+  {
+   "fieldname": "error_section",
+   "fieldtype": "Section Break",
+   "label": "Error Details",
+   "collapsible": 1,
+   "depends_on": "eval:doc.status=='Failed'"
+  },
+  {
+   "description": "Error message or traceback when processing failed.",
+   "fieldname": "error_log",
+   "fieldtype": "Small Text",
+   "label": "Error Log",
+   "read_only": 1
+  }
+ ],
+ "has_web_view": 0,
+ "hide_toolbar": 0,
+ "idx": 0,
+ "in_create": 0,
+ "is_submittable": 0,
+ "issingle": 0,
+ "istable": 0,
+ "max_attachments": 0,
+ "modified": "2026-04-01 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Ticktix",
+ "name": "Daily Travel Summary",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 0,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "quick_entry": 0,
+ "sort_field": "summary_date",
+ "sort_order": "DESC",
+ "title_field": "employee",
+ "track_changes": 1
+}

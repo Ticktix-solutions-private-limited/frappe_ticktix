@@ -1,0 +1,268 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2024-09-23 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_section",
+  "company_logo_url",
+  "column_break_3",
+  "app_title",
+  "oauth_section",
+  "ticktix_client_id", 
+  "ticktix_base_url",
+  "column_break_oauth_1",
+  "ticktix_redirect_url_template",
+  "jwt_section",
+  "jwt_enabled",
+  "jwt_validation_method",
+  "column_break_jwt_1",
+  "jwt_algorithm",
+  "jwt_issuer",
+  "column_break_jwt_2", 
+  "jwt_audience",
+  "jwt_secret_section",
+  "jwt_secret_key",
+  "jwt_jwks_section",
+  "jwt_jwks_uri",
+  "jwt_user_section",
+  "jwt_auto_provision_users",
+  "jwt_required_scopes",
+  "column_break_user_1",
+  "jwt_allowed_email_domains",
+  "jwt_default_user_type",
+  "jwt_mapping_section",
+  "jwt_default_roles",
+  "jwt_role_mapping_json",
+  "column_break_mapping_1",
+  "jwt_custom_claims_json"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_section",
+   "fieldtype": "Section Break",
+   "label": "General Settings"
+  },
+  {
+   "fieldname": "company_logo_url",
+   "fieldtype": "Data",
+   "label": "Company Logo URL",
+   "description": "URL to company logo image"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "app_title", 
+   "fieldtype": "Data",
+   "label": "Application Title",
+   "description": "Title displayed in the application"
+  },
+  {
+   "fieldname": "oauth_section",
+   "fieldtype": "Section Break", 
+   "label": "OAuth Settings"
+  },
+  {
+   "fieldname": "ticktix_client_id",
+   "fieldtype": "Data",
+   "label": "TickTix Client ID",
+   "description": "OAuth client ID for TickTix integration"
+  },
+  {
+   "fieldname": "ticktix_base_url",
+   "fieldtype": "Data",
+   "label": "TickTix Base URL", 
+   "description": "Base URL for TickTix OIDC provider (e.g., https://auth.ticktix.com)"
+  },
+  {
+   "fieldname": "column_break_oauth_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "ticktix_redirect_url_template",
+   "fieldtype": "Data",
+   "label": "Redirect URL Template",
+   "description": "OAuth redirect URL template (default: /api/method/frappe.integrations.oauth2_logins.custom/ticktix)"
+  },
+  {
+   "fieldname": "jwt_section",
+   "fieldtype": "Section Break",
+   "label": "JWT Authentication"
+  },
+  {
+   "fieldname": "jwt_enabled",
+   "fieldtype": "Check",
+   "label": "Enable JWT Authentication",
+   "description": "Enable JWT token validation for API requests",
+   "default": 1
+  },
+  {
+   "fieldname": "jwt_validation_method",
+   "fieldtype": "Select",
+   "label": "JWT Validation Method",
+   "options": "jwks\nsecret",
+   "default": "jwks",
+   "description": "Method for JWT validation: JWKS (recommended) or shared secret"
+  },
+  {
+   "fieldname": "column_break_jwt_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "jwt_algorithm",
+   "fieldtype": "Select", 
+   "label": "JWT Algorithm",
+   "options": "RS256\nRS384\nRS512\nHS256\nHS384\nHS512",
+   "default": "RS256",
+   "description": "JWT signing algorithm"
+  },
+  {
+   "fieldname": "jwt_issuer",
+   "fieldtype": "Data",
+   "label": "JWT Issuer",
+   "description": "Expected JWT issuer (iss claim)"
+  },
+  {
+   "fieldname": "column_break_jwt_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "jwt_audience",
+   "fieldtype": "Data",
+   "label": "JWT Audience", 
+   "description": "Expected JWT audience (aud claim)"
+  },
+  {
+   "fieldname": "jwt_secret_section",
+   "fieldtype": "Section Break",
+   "label": "JWT Shared Secret",
+   "depends_on": "eval:doc.jwt_validation_method=='secret'",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "jwt_secret_key",
+   "fieldtype": "Password",
+   "label": "JWT Secret Key",
+   "description": "Shared secret for HMAC JWT validation"
+  },
+  {
+   "fieldname": "jwt_jwks_section", 
+   "fieldtype": "Section Break",
+   "label": "JWKS Configuration",
+   "depends_on": "eval:doc.jwt_validation_method=='jwks'",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "jwt_jwks_uri",
+   "fieldtype": "Data",
+   "label": "JWKS URI",
+   "description": "JWKS endpoint URL for public key validation (e.g., https://login.ticktix.com/.well-known/openid_configuration/jwks)"
+  },
+  {
+   "fieldname": "jwt_user_section",
+   "fieldtype": "Section Break", 
+   "label": "User Provisioning"
+  },
+  {
+   "fieldname": "jwt_auto_provision_users",
+   "fieldtype": "Check",
+   "label": "Auto-provision Users",
+   "description": "Automatically create Frappe users from valid JWT tokens",
+   "default": 0
+  },
+  {
+   "fieldname": "jwt_required_scopes",
+   "fieldtype": "Data",
+   "label": "Required Scopes",
+   "description": "Comma-separated list of required JWT scopes for API access"
+  },
+  {
+   "fieldname": "column_break_user_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "jwt_allowed_email_domains",
+   "fieldtype": "Small Text",
+   "label": "Allowed Email Domains",
+   "description": "Comma-separated list of email domains for auto-provisioning (leave empty for all)"
+  },
+  {
+   "fieldname": "jwt_default_user_type",
+   "fieldtype": "Select",
+   "label": "Default User Type",
+   "options": "System User\nWebsite User",
+   "default": "System User",
+   "description": "Default user type for auto-provisioned users"
+  },
+  {
+   "fieldname": "jwt_mapping_section",
+   "fieldtype": "Section Break",
+   "label": "Role and Claims Mapping",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "jwt_default_roles",
+   "fieldtype": "Data",
+   "label": "Default Roles", 
+   "description": "Comma-separated list of default Frappe roles for auto-provisioned users",
+   "default": "Desk User"
+  },
+  {
+   "fieldname": "jwt_role_mapping_json",
+   "fieldtype": "Code",
+   "label": "JWT Role Mapping",
+   "description": "JSON mapping of JWT roles to Frappe roles (e.g., {\"admin\": [\"Administrator\"], \"user\": [\"Desk User\"]})",
+   "options": "JSON"
+  },
+  {
+   "fieldname": "column_break_mapping_1", 
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "jwt_custom_claims_json",
+   "fieldtype": "Code",
+   "label": "Custom Claims Validation",
+   "description": "JSON object for validating custom JWT claims (e.g., {\"tenant\": \"ticktix\"})",
+   "options": "JSON"
+  }
+ ],
+ "has_web_view": 0,
+ "hide_toolbar": 0,
+ "idx": 0,
+ "in_create": 0,
+ "is_submittable": 0,
+ "is_single": 1,
+ "issingle": 1,
+ "istable": 0,
+ "max_attachments": 0,
+ "modified": "2024-09-23 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Ticktix",
+ "name": "TickTix Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "read_only": 0,
+ "show_name_in_global_search": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "app_title",
+ "track_changes": 1,
+ "track_seen": 0
+}
