@@ -1,0 +1,200 @@
+/* TickTix Split-Screen Login Design */
+
+body.login-page { 
+  font-family: -apple-system, sans-serif; 
+  background: none !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Hide navigation bar on login page */
+body.login-page .navbar,
+body.login-page .nav,
+body.login-page .navigation,
+body.login-page .header,
+body.login-page .top-bar,
+body.login-page .navbar-nav,
+body.login-page nav,
+#page-login .page-card-actions
+{
+  display: none !important;
+}
+
+/* Split layout container - Clean Grid Approach */
+.for-login { 
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* 50% - 50% split */
+  min-height: 100vh; 
+  padding: 0;
+  margin: 0;
+}
+
+/* Left side - Full height facility image */
+.for-login::before {
+  content: '';
+  background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.5)), 
+              url('https://i.pinimg.com/736x/63/3f/0b/633f0be32daf64ca8cb96c408c87c422.jpg');
+  background-size: cover;
+  background-position: center;
+  grid-column: 1; /* Takes first column */
+  grid-row: 1;
+}
+
+/* Right side wrapper - contains both header and login */
+.for-login > * {
+  grid-column: 2; /* All content goes to second column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  padding: 40px;
+}
+
+/* Center the right side content vertically */
+.for-login .page-card-head {
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.for-login .page-card-head h4
+{
+    margin-bottom: 0px;
+}
+
+.for-login .login-content.page-card {
+  max-width: 350px;
+  width: 100%;
+  background-color: #e8e8e8 !important;
+}
+
+.page-card-head { 
+  text-align: center; 
+  margin-bottom: 2rem; 
+}
+
+.page-card-head .app-logo { 
+  max-width: 180px; 
+  margin-bottom: 1rem; 
+}
+
+.page-card-head h4 { 
+  margin: 0 0 2rem 0; 
+  font-weight: 500;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+.login-content.page-card { 
+  background: transparent !important; 
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important; 
+  border-radius: 0 !important; 
+  max-width: none !important;
+  width: auto !important;
+  min-width: auto !important;
+  box-shadow: none !important; 
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.page-card-body { 
+  padding: 0 !important; 
+  margin: 0 !important;
+  text-align: center; 
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+.btn-login-option, .btn-ticktix, 
+.login-wrapper .btn-login-option, 
+.login-wrapper .btn-ticktix,
+.login-content.page-card .btn-login-option,
+.login-content.page-card .btn-ticktix { 
+  background: #000 !important; 
+  color: white !important; 
+  border: 1px solid #000; 
+  border-radius: 8px; 
+  padding: 16px 32px; 
+  font-weight: 500; 
+  font-size: 1rem;
+  width: auto !important; 
+  min-width: 200px;
+  text-decoration: none; 
+  display: inline-block !important;
+  margin: 0 !important;
+  transition: all 0.2s ease;
+  visibility: visible !important;
+  opacity: 1 !important;
+  font-size: var(--text-lg) !important;
+}
+
+.btn-login-option:hover, .btn-ticktix:hover { 
+  background: #333 !important; 
+  color: white !important; 
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* Force show social login containers */
+.social-logins, .social-login-buttons, .login-button-wrapper {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  /* Stack vertically on mobile */
+  .for-login {
+    grid-template-columns: 1fr; /* Single column */
+    grid-template-rows: 1fr; /* Content takes full height */
+  }
+  
+  .for-login::before {
+    display: none; /* Hide the left side image on mobile */
+  }
+  
+  .for-login > * {
+    grid-column: 1;
+    grid-row: 1; /* Content takes the full single row */
+    padding: 30px 20px;
+  }
+  
+  .page-card-head .app-logo {
+    max-width: 150px;
+  }
+  
+  .page-card-head h4 {
+    font-size: 1.25rem;
+  }
+  
+  .btn-login-option, .btn-ticktix {
+    padding: 14px 28px;
+    min-width: 180px;
+  }
+}
+
+/* Hide unused login methods but show social login */
+.email-field, .password-field, .btn-login, .btn-ldap-login, .login-divider { 
+  display: none !important; 
+}
+
+/* Container margin reset */
+.container {
+  margin-top: 0px !important;
+}
+
+/* Ensure social login elements are visible */
+.social-logins, .social-login-buttons, .login-button-wrapper, .btn-login-option, .btn-ticktix {
+  display: block !important;
+  visibility: visible !important;
+}
