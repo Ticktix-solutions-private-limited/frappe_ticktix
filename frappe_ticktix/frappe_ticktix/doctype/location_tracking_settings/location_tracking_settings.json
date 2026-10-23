@@ -1,0 +1,203 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-08-10 00:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "general_section",
+  "enabled",
+  "batch_size",
+  "balanced_mode_section",
+  "balanced_time_interval_ms",
+  "balanced_distance_interval_m",
+  "column_break_balanced",
+  "high_mode_section",
+  "high_time_interval_ms",
+  "high_distance_interval_m",
+  "column_break_high",
+  "mode_switching_section",
+  "traveling_speed_mps",
+  "column_break_mode_switching",
+  "min_accuracy_meters",
+  "advanced_section",
+  "flush_interval_ms",
+  "mode_switch_cooldown_ms",
+  "column_break_advanced",
+  "max_queue_size",
+  "retry_base_delay_ms",
+  "retry_max_delay_ms"
+ ],
+ "fields": [
+  {
+   "fieldname": "general_section",
+   "fieldtype": "Section Break",
+   "label": "General"
+  },
+  {
+   "default": "1",
+   "description": "Master kill-switch. Turn off to stop location tracking for all employees instantly, without a mobile app release.",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enable Location Tracking"
+  },
+  {
+   "default": "20",
+   "description": "Number of points bundled into each upload/insert call from the device. Higher = less server load but less \"live\" data; lower = more real-time but more requests.",
+   "fieldname": "batch_size",
+   "fieldtype": "Int",
+   "label": "Batch Size"
+  },
+  {
+   "fieldname": "balanced_mode_section",
+   "fieldtype": "Section Break",
+   "label": "Balanced Mode (Walking / Stationary)"
+  },
+  {
+   "default": "30000",
+   "description": "Minimum time (ms) between points while in balanced (low-power) mode.",
+   "fieldname": "balanced_time_interval_ms",
+   "fieldtype": "Int",
+   "label": "Time Interval (ms)"
+  },
+  {
+   "default": "30",
+   "description": "Minimum distance (metres) the employee must move before a new point is captured in balanced mode.",
+   "fieldname": "balanced_distance_interval_m",
+   "fieldtype": "Int",
+   "label": "Distance Interval (metres)"
+  },
+  {
+   "fieldname": "column_break_balanced",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "high_mode_section",
+   "fieldtype": "Section Break",
+   "label": "High Accuracy Mode (Traveling / Vehicle)"
+  },
+  {
+   "default": "5000",
+   "description": "Minimum time (ms) between points while in high-accuracy (traveling) mode.",
+   "fieldname": "high_time_interval_ms",
+   "fieldtype": "Int",
+   "label": "Time Interval (ms)"
+  },
+  {
+   "default": "10",
+   "description": "Minimum distance (metres) the employee must move before a new point is captured in high-accuracy mode.",
+   "fieldname": "high_distance_interval_m",
+   "fieldtype": "Int",
+   "label": "Distance Interval (metres)"
+  },
+  {
+   "fieldname": "column_break_high",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mode_switching_section",
+   "fieldtype": "Section Break",
+   "label": "Mode Switching & Accuracy Filter"
+  },
+  {
+   "default": "2.5",
+   "description": "Speed (metres/second) above which tracking switches from Balanced to High Accuracy mode. Tune per region (e.g. commuting field staff vs. on-site staff).",
+   "fieldname": "traveling_speed_mps",
+   "fieldtype": "Float",
+   "label": "Traveling Speed Threshold (m/s)",
+   "precision": "2"
+  },
+  {
+   "fieldname": "column_break_mode_switching",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "50",
+   "description": "GPS fixes with a reported accuracy worse than this value (metres) are discarded as noise. Loosen in areas with poor GPS coverage, tighten elsewhere.",
+   "fieldname": "min_accuracy_meters",
+   "fieldtype": "Float",
+   "label": "Min Accuracy Threshold (metres)",
+   "precision": "1"
+  },
+  {
+   "collapsible": 1,
+   "description": "Lower-priority knobs — safe defaults, tune less often.",
+   "fieldname": "advanced_section",
+   "fieldtype": "Section Break",
+   "label": "Advanced (Queueing & Retry)"
+  },
+  {
+   "default": "60000",
+   "description": "Maximum time (ms) a point can sit locally before being force-sent even if the batch isn't full yet.",
+   "fieldname": "flush_interval_ms",
+   "fieldtype": "Int",
+   "label": "Flush Interval (ms)"
+  },
+  {
+   "default": "30000",
+   "description": "Minimum time (ms) to remain in a tracking mode before switching again, to avoid rapid oscillation between Balanced and High Accuracy.",
+   "fieldname": "mode_switch_cooldown_ms",
+   "fieldtype": "Int",
+   "label": "Mode Switch Cooldown (ms)"
+  },
+  {
+   "fieldname": "column_break_advanced",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "500",
+   "description": "Maximum number of points to hold in local on-device storage while offline/during an outage, before oldest points are dropped.",
+   "fieldname": "max_queue_size",
+   "fieldtype": "Int",
+   "label": "Max Local Queue Size"
+  },
+  {
+   "default": "2000",
+   "description": "Initial backoff delay (ms) before retrying a failed upload.",
+   "fieldname": "retry_base_delay_ms",
+   "fieldtype": "Int",
+   "label": "Retry Base Delay (ms)"
+  },
+  {
+   "default": "60000",
+   "description": "Upper cap (ms) on the exponential backoff delay between retries.",
+   "fieldname": "retry_max_delay_ms",
+   "fieldtype": "Int",
+   "label": "Retry Max Delay (ms)"
+  }
+ ],
+ "has_web_view": 0,
+ "hide_toolbar": 0,
+ "idx": 0,
+ "in_create": 0,
+ "is_submittable": 0,
+ "is_single": 0,
+ "issingle": 0,
+ "istable": 0,
+ "max_attachments": 0,
+ "modified": "2026-08-10 00:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Ticktix",
+ "name": "Location Tracking Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 0,
+ "read_only": 0,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "title_field": "",
+ "track_changes": 1
+}

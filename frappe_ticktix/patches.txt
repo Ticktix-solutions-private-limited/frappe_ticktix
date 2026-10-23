@@ -1,0 +1,13 @@
+[pre_model_sync]
+# Patches added in this section will be executed before doctypes are migrated
+# Read docs to understand patches: https://frappeframework.com/docs/v14/user/en/database-migrations
+frappe_ticktix.patches.rename_live_geo_tracking_to_v2
+# Rename DocType V2 → V1 and columns: latitude→lat, longitude→long, captured_at→device_date_time
+frappe_ticktix.patches.rename_live_geo_tracking_v2_to_v1
+
+[post_model_sync]
+# Patches added in this section will be executed after doctypes are migrated
+frappe_ticktix.patches.add_abbr_custom_fields
+frappe_ticktix.patches.add_attendance_status_options
+# Geo travel system: add composite DB indexes for performance
+frappe_ticktix.patches.add_geo_tracking_indexes
