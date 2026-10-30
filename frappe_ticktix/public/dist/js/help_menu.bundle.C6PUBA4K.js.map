@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../../../../apps/frappe_ticktix/frappe_ticktix/public/js/help_menu.bundle.js"],
+  "sourcesContent": ["// Help menu: external links (e.g. Documentation, About) open in a new tab.\n// They stay real <a href> links, so the browser still shows the URL preview on hover.\ndocument.addEventListener(\n\t\"click\",\n\t(e) => {\n\t\tconst a = e.target.closest && e.target.closest(\"#toolbar-help a.dropdown-item[href]\");\n\t\tif (!a || e.defaultPrevented || e.button !== 0) return;\n\t\tlet url;\n\t\ttry {\n\t\t\turl = new URL(a.href, window.location.href);\n\t\t} catch (err) {\n\t\t\treturn;\n\t\t}\n\t\tif (url.origin === window.location.origin) return;\n\t\te.preventDefault();\n\t\te.stopPropagation();\n\t\twindow.open(url.href, \"_blank\", \"noopener\");\n\t},\n\ttrue\n);\n"],
+  "mappings": ";;AAEA,WAAS;AAAA,IACR;AAAA,IACA,CAAC,MAAM;AACN,YAAM,IAAI,EAAE,OAAO,WAAW,EAAE,OAAO,QAAQ,qCAAqC;AACpF,UAAI,CAAC,KAAK,EAAE,oBAAoB,EAAE,WAAW;AAAG;AAChD,UAAI;AACJ,UAAI;AACH,cAAM,IAAI,IAAI,EAAE,MAAM,OAAO,SAAS,IAAI;AAAA,MAC3C,SAAS,KAAP;AACD;AAAA,MACD;AACA,UAAI,IAAI,WAAW,OAAO,SAAS;AAAQ;AAC3C,QAAE,eAAe;AACjB,QAAE,gBAAgB;AAClB,aAAO,KAAK,IAAI,MAAM,UAAU,UAAU;AAAA,IAC3C;AAAA,IACA;AAAA,EACD;",
+  "names": []
+}
