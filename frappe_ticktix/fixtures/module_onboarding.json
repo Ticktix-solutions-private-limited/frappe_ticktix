@@ -1,0 +1,54 @@
+[
+ {
+  "allow_roles": [
+   {
+    "parent": "Website",
+    "parentfield": "allow_roles",
+    "parenttype": "Module Onboarding",
+    "role": "Website Manager"
+   }
+  ],
+  "docstatus": 0,
+  "doctype": "Module Onboarding",
+  "documentation_url": "https://docs.erpnext.com/docs/user/manual/en/website",
+  "is_complete": 1,
+  "modified": "2026-10-14 16:25:07.898535",
+  "module": "Website",
+  "name": "Website",
+  "steps": [
+   {
+    "parent": "Website",
+    "parentfield": "steps",
+    "parenttype": "Module Onboarding",
+    "step": "Introduction to Website"
+   },
+   {
+    "parent": "Website",
+    "parentfield": "steps",
+    "parenttype": "Module Onboarding",
+    "step": "Create Blogger"
+   },
+   {
+    "parent": "Website",
+    "parentfield": "steps",
+    "parenttype": "Module Onboarding",
+    "step": "Add Blog Category"
+   },
+   {
+    "parent": "Website",
+    "parentfield": "steps",
+    "parenttype": "Module Onboarding",
+    "step": "Enable Website Tracking"
+   },
+   {
+    "parent": "Website",
+    "parentfield": "steps",
+    "parenttype": "Module Onboarding",
+    "step": "Web Page Tour"
+   }
+  ],
+  "subtitle": "Blogs, Website View Tracking, and more.",
+  "success_message": "Your website is all set up!",
+  "title": "Let's Set Up Your Website."
+ }
+]
