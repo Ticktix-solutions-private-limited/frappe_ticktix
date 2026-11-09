@@ -1,0 +1,107 @@
+{
+ "actions": [],
+ "allow_rename": 0,
+ "creation": "2026-10-31 10:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "storage_section",
+  "s3_enabled",
+  "s3_bucket_name",
+  "s3_aws_key",
+  "s3_signed_url_expiry_time",
+  "column_break_s3_1",
+  "s3_region_name",
+  "s3_folder_name",
+  "s3_aws_secret",
+  "s3_delete_file_from_cloud"
+ ],
+ "fields": [
+  {
+   "fieldname": "storage_section",
+   "fieldtype": "Section Break",
+   "label": "File Storage (S3)"
+  },
+  {
+   "default": "0",
+   "description": "When enabled, newly uploaded attachments are stored in S3 instead of the local filesystem.",
+   "fieldname": "s3_enabled",
+   "fieldtype": "Check",
+   "label": "Store Attachments in S3"
+  },
+  {
+   "fieldname": "s3_bucket_name",
+   "fieldtype": "Data",
+   "label": "Bucket Name",
+   "mandatory_depends_on": "eval:doc.s3_enabled"
+  },
+  {
+   "fieldname": "s3_aws_key",
+   "fieldtype": "Data",
+   "label": "AWS Access Key ID",
+   "mandatory_depends_on": "eval:doc.s3_enabled"
+  },
+  {
+   "default": "120",
+   "fieldname": "s3_signed_url_expiry_time",
+   "fieldtype": "Int",
+   "label": "Signed URL Expiry Time (seconds)"
+  },
+  {
+   "fieldname": "column_break_s3_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "s3_region_name",
+   "fieldtype": "Data",
+   "label": "S3 Bucket Region Name",
+   "mandatory_depends_on": "eval:doc.s3_enabled"
+  },
+  {
+   "description": "Always starts with \"attachment/\", followed by the site name, e.g. attachment/mysite.example.com",
+   "fieldname": "s3_folder_name",
+   "fieldtype": "Data",
+   "label": "Folder Name",
+   "mandatory_depends_on": "eval:doc.s3_enabled"
+  },
+  {
+   "fieldname": "s3_aws_secret",
+   "fieldtype": "Password",
+   "label": "AWS Secret Access Key",
+   "mandatory_depends_on": "eval:doc.s3_enabled"
+  },
+  {
+   "default": "0",
+   "description": "Delete the object from S3 when its File record is deleted.",
+   "fieldname": "s3_delete_file_from_cloud",
+   "fieldtype": "Check",
+   "label": "Delete File From Cloud"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_single": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-31 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Ticktix",
+ "name": "TickTix S3 Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

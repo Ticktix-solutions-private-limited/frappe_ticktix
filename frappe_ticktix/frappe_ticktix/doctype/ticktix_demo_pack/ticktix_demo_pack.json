@@ -1,0 +1,47 @@
+{
+ "actions": [],
+ "creation": "2026-11-05 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "pack",
+  "version",
+  "loaded_on"
+ ],
+ "fields": [
+  {
+   "fieldname": "pack",
+   "fieldtype": "Data",
+   "label": "Pack",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "version",
+   "fieldtype": "Int",
+   "label": "Version",
+   "in_list_view": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "loaded_on",
+   "fieldtype": "Datetime",
+   "label": "Loaded On",
+   "in_list_view": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-11-05 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Ticktix",
+ "name": "TickTix Demo Pack",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "istable": 1,
+ "editable_grid": 1
+}

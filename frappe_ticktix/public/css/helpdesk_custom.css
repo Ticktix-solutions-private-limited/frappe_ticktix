@@ -1,0 +1,38 @@
+/* Hide Support and Docs menu items from Helpdesk sidebar dropdown */
+
+/* JavaScript will add this class to elements that should be hidden */
+.hide-helpdesk-support-docs {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    overflow: hidden !important;
+    opacity: 0 !important;
+}
+
+/* Attempt to hide by structure/position (fragile but instant) */
+/* This targets common menu item structures in Helpdesk */
+/* Adjust selectors based on actual DOM inspection */
+
+/* Hide elements that might be Support/Docs by common icon patterns */
+/* life-buoy icon (Support) */
+button:has(svg.lucide-life-buoy),
+a:has(svg.lucide-life-buoy),
+div:has(svg.lucide-life-buoy) {
+    display: none !important;
+}
+
+/* book-open icon (Docs) */
+button:has(svg.lucide-book-open),
+a:has(svg.lucide-book-open),
+div:has(svg.lucide-book-open) {
+    display: none !important;
+}
+
+/* Backup: Target by nth-child if menu follows consistent pattern */
+/* Uncomment and adjust numbers if needed after inspecting the dropdown */
+/*
+[role="menu"] > div:nth-child(3),
+[role="menu"] > div:nth-child(4) {
+    display: none !important;
+}
+*/

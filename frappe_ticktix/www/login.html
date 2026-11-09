@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="{{ lang or 'en' }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light only">
+  <meta name="supported-color-schemes" content="light only">
+  <title>{{ _("Login") }} · {{ app_name }}</title>
+  {% if favicon %}<link rel="icon" href="{{ favicon }}">{% endif %}
+  <style>
+    /* ---------- design tokens ---------- */
+    :root {
+      color-scheme: light only;
+      --accent: #3f4bb8;
+      --accent-hover: #353fa0;
+      --accent-ring: rgba(63, 75, 184, 0.22);
+      --ink: #111827;
+      --ink-soft: #374151;
+      --muted: #6b7280;
+      --line: #e5e7eb;
+      --surface: #ffffff;
+      --surface-alt: #f8f9fb;
+      --side-bg: #111a2e;
+      --side-bg-2: #172238;
+      --ok: #15803d;
+    }
+
+    /* ---------- base ---------- */
+    * { box-sizing: border-box; }
+
+    html, body { height: 100%; margin: 0; }
+
+    body {
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: var(--surface);
+      color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      line-height: 1.55;
+    }
+
+    /* ---------- layout ---------- */
+    .shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      min-height: 100vh;
+    }
+
+    /* ========== BRAND PANEL ========== */
+    .brand {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3rem 4rem;
+      color: #e5e9f2;
+      background:
+        radial-gradient(760px 460px at 88% 6%, rgba(110, 128, 235, 0.20), transparent 62%),
+        radial-gradient(640px 460px at 0% 100%, rgba(70, 90, 190, 0.20), transparent 60%),
+        linear-gradient(160deg, var(--side-bg) 0%, var(--side-bg-2) 100%);
+    }
+
+    /* very faint dotted texture, no glows */
+    .brand::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      pointer-events: none;
+    }
+
+    .brand > * { position: relative; }
+
+    .brand-top {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      color: #f3f4f8;
+    }
+
+    .brand-top .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #8f9bf0;
+      box-shadow: 0 0 0 5px rgba(143, 155, 240, 0.18);
+    }
+
+    .brand h1 {
+      max-width: 520px;
+      margin: 0 0 1.1rem;
+      font-size: clamp(2rem, 3.5vw, 2.85rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #f8fafc;
+    }
+
+    .brand h1 span { color: #a5aef5; }
+
+    .brand .lead {
+      max-width: 440px;
+      margin: 0 0 2.5rem;
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: #aab4c8;
+    }
+
+    .features {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1rem;
+    }
+
+    .features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.95rem;
+      color: #cbd3e1;
+    }
+
+    .features svg {
+      flex: none;
+      width: 26px;
+      height: 26px;
+      padding: 5px;
+      border-radius: 50%;
+      border: 1px solid rgba(165, 174, 245, 0.40);
+      background: rgba(165, 174, 245, 0.10);
+      color: #b4bcf7;
+      stroke-width: 2.4;
+    }
+
+    .brand-foot {
+      font-size: 0.82rem;
+      color: #7d8aa3;
+    }
+
+    /* ========== FORM PANEL ========== */
+    .panel {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+      background:
+        radial-gradient(700px 420px at 100% 0%, rgba(63, 75, 184, 0.05), transparent 60%),
+        var(--surface);
+    }
+
+    .card {
+      width: 100%;
+      max-width: 420px;
+      animation: rise 0.4s ease-out both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: none; }
+    }
+
+    .logo {
+      display: block;
+      max-height: 44px;
+      max-width: 180px;
+      margin: 0 0 2.75rem;
+      object-fit: contain;
+    }
+
+    .card h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.95rem;
+      font-weight: 650;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+    }
+
+    .card .sub {
+      margin: 0 0 2rem;
+      font-size: 0.98rem;
+      color: var(--muted);
+    }
+
+    /* ---------- SSO button ---------- */
+    .btn-sso {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      height: 52px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.98rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(17, 24, 39, 0.12), 0 8px 18px -10px rgba(63, 75, 184, 0.55);
+      transition: background 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn-sso:hover {
+      background: var(--accent-hover);
+      box-shadow: 0 4px 12px -4px rgba(63, 75, 184, 0.45);
+    }
+
+    .btn-sso:focus-visible {
+      outline: none;
+      box-shadow: 0 0 0 4px var(--accent-ring);
+    }
+
+    .btn-sso:active { background: #2f388c; }
+
+    .btn-sso svg { width: 18px; height: 18px; flex: none; transition: transform 0.15s ease; }
+
+    .btn-sso:hover svg { transform: translateX(3px); }
+
+    /* ---------- divider ---------- */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 1.75rem 0 1.25rem;
+      color: #9ca3af;
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+      flex: 1;
+      height: 1px;
+      background: var(--line);
+    }
+
+    /* ---------- secure note ---------- */
+    .secure {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 1rem 1.1rem;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface-alt);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .secure svg {
+      flex: none;
+      width: 18px;
+      height: 18px;
+      margin-top: 1px;
+      color: var(--ok);
+    }
+
+    /* ---------- notice ---------- */
+    .notice {
+      padding: 0.9rem 1.1rem;
+      border: 1px solid #f3d3d3;
+      border-radius: 10px;
+      background: #fdf6f6;
+      color: #8a2b2b;
+      font-size: 0.92rem;
+      line-height: 1.5;
+    }
+
+    /* ---------- legal ---------- */
+    .legal {
+      margin-top: 2.5rem;
+      font-size: 0.8rem;
+      line-height: 1.6;
+      color: #8b94a5;
+    }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 1024px) {
+      .brand { padding: 2.5rem; }
+    }
+
+    @media (max-width: 820px) {
+      .shell { grid-template-columns: 1fr; }
+      .brand { display: none; }
+      .panel { padding: 2.5rem 1.5rem; align-items: center; }
+      .card { margin: 0 auto; max-width: 420px; }
+    }
+
+    @media (max-width: 480px) {
+      .panel { padding: 2rem 1.25rem; }
+      .card h2 { font-size: 1.6rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card { animation: none; }
+      .btn-sso, .btn-sso svg { transition: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- ========== BRAND PANEL ========== -->
+  <aside class="brand">
+    <div class="brand-top">
+      <span class="dot"></span>
+      {{ app_name }}
+    </div>
+
+    <div>
+      <h1>One platform for every <span>facility</span> operation.</h1>
+      <p class="lead">
+        Manage people, assets and workflows from a single, secure workspace built for your organisation.
+      </p>
+      <ul class="features">
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          Single sign-on with your TickTix account
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          Real-time visibility across sites and teams
+        </li>
+        <li>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          Enterprise-grade access control
+        </li>
+      </ul>
+    </div>
+
+    <div class="brand-foot">
+      &copy; <script>document.write(new Date().getFullYear())</script> TickTix. Your techno partner.
+    </div>
+  </aside>
+
+  <!-- ========== FORM PANEL ========== -->
+  <main class="panel">
+    <div class="card">
+
+      {% if logo %}
+        <img class="logo" src="{{ logo }}" alt="{{ app_name }}">
+      {% endif %}
+
+      <h2>{{ _("Welcome back") }}</h2>
+      <p class="sub">{{ _("Sign in to {0} to continue to your workspace.").format(app_name) }}</p>
+
+      {% if provider_logins %}
+        {% for provider in provider_logins %}
+          <a class="btn-sso" href="{{ provider.auth_url }}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/>
+              <path d="m10 17 5-5-5-5"/>
+              <path d="M15 12H3"/>
+            </svg>
+            {{ _("Login with TickTix") }}
+          </a>
+        {% endfor %}
+
+        <div class="divider">{{ _("Secure sign-in") }}</div>
+
+        <div class="secure">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <span>{{ _("You will be redirected to the TickTix identity service to verify your credentials.") }}</span>
+        </div>
+      {% else %}
+        <div class="notice">
+          {{ _("Single sign-on is not configured for this site. Please contact your administrator.") }}
+        </div>
+      {% endif %}
+
+      <div class="legal">
+        {{ _("By continuing you agree to your organisation's acceptable use policy.") }}
+      </div>
+
+    </div>
+  </main>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+{
+ "actions": [],
+ "creation": "2026-11-05 10:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "current_action",
+  "progress_percent",
+  "progress_message",
+  "started_on",
+  "finished_on",
+  "anchor_date",
+  "packs",
+  "last_error"
+ ],
+ "fields": [
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "Not Loaded\nLoading\nLoaded\nClearing\nFailed",
+   "default": "Not Loaded",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_action",
+   "fieldtype": "Data",
+   "label": "Current Action",
+   "read_only": 1
+  },
+  {
+   "fieldname": "progress_percent",
+   "fieldtype": "Percent",
+   "label": "Progress",
+   "read_only": 1
+  },
+  {
+   "fieldname": "progress_message",
+   "fieldtype": "Small Text",
+   "label": "Progress Message",
+   "read_only": 1
+  },
+  {
+   "fieldname": "started_on",
+   "fieldtype": "Datetime",
+   "label": "Started On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "finished_on",
+   "fieldtype": "Datetime",
+   "label": "Finished On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "anchor_date",
+   "fieldtype": "Date",
+   "label": "Demo Data As Of",
+   "read_only": 1
+  },
+  {
+   "fieldname": "packs",
+   "fieldtype": "Table",
+   "label": "Loaded Packs",
+   "options": "TickTix Demo Pack",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_error",
+   "fieldtype": "Long Text",
+   "label": "Last Error",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 0,
+ "links": [],
+ "modified": "2026-11-05 10:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Frappe Ticktix",
+ "name": "TickTix Demo Data",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "read": 1,
+   "role": "System Manager",
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "issingle": 1,
+ "is_single": 1,
+ "description": "Status of the demo data on this site. Use the buttons on TickTix Settings to load or clear it."
+}
