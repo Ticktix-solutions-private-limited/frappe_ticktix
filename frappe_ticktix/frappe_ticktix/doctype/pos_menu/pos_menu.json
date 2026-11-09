@@ -1,0 +1,285 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-07-13 12:51:40.973584",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "section_break_usiv",
+  "customer",
+  "validfrom",
+  "status",
+  "column_break_gxmx",
+  "plantype",
+  "validto",
+  "section_break_sqwb",
+  "breakfast_section",
+  "breakfaststarttime",
+  "column_break_breakfast_time",
+  "breakfastendtime",
+  "breakfast_items_break",
+  "breakfastmenulines",
+  "lunchmeals_section",
+  "lunchmealsstarttime",
+  "column_break_lunchmeals_time",
+  "lunchmealsendtime",
+  "lunchmeals_items_break",
+  "lunchmealsmenulines",
+  "lunchother_section",
+  "lunchotherstarttime",
+  "column_break_lunchother_time",
+  "lunchotherendtime",
+  "lunchother_items_break",
+  "lunchothermenulines",
+  "snacks_section",
+  "snacksstarttime",
+  "column_break_snacks_time",
+  "snacksendtime",
+  "snacks_items_break",
+  "snacksmenulines",
+  "dinner_section",
+  "dinnerstarttime",
+  "column_break_dinner_time",
+  "dinnerendtime",
+  "dinner_items_break",
+  "dinnermenulines",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "section_break_usiv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "validfrom",
+   "fieldtype": "Date",
+   "label": "Valid From"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "Status",
+   "options": "\nActive\nInActive"
+  },
+  {
+   "fieldname": "column_break_gxmx",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "plantype",
+   "fieldtype": "Select",
+   "label": "Plan Type",
+   "options": "Daily\nWeekly"
+  },
+  {
+   "fieldname": "validto",
+   "fieldtype": "Date",
+   "label": "Valid To"
+  },
+  {
+   "fieldname": "section_break_sqwb",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "breakfast_section",
+   "fieldtype": "Section Break",
+   "label": "Breakfast Menu"
+  },
+  {
+   "fieldname": "breakfaststarttime",
+   "fieldtype": "Time",
+   "label": "Breakfast Start Time",
+   "reqd": 0
+  },
+  {
+   "fieldname": "column_break_breakfast_time",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "breakfastendtime",
+   "fieldtype": "Time",
+   "label": "Breakfast End Time",
+   "mandatory_depends_on": "eval:doc.breakfastmenulines && doc.breakfastmenulines.length > 0"
+  },
+  {
+   "fieldname": "breakfast_items_break",
+   "fieldtype": "Section Break"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "breakfastmenulines",
+   "fieldtype": "Table",
+   "label": "Breakfast Menu Items",
+   "options": "Menu Lines"
+  },
+  {
+   "fieldname": "lunchmeals_section",
+   "fieldtype": "Section Break",
+   "label": "Lunch Meals Menu"
+  },
+  {
+   "fieldname": "lunchmealsstarttime",
+   "fieldtype": "Time",
+   "label": "Lunch Meals Start Time",
+   "reqd": 0
+  },
+  {
+   "fieldname": "column_break_lunchmeals_time",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lunchmealsendtime",
+   "fieldtype": "Time",
+   "label": "Lunch Meals End Time",
+   "mandatory_depends_on": "eval:doc.lunchmealsmenulines && doc.lunchmealsmenulines.length > 0"
+  },
+  {
+   "fieldname": "lunchmeals_items_break",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lunchmealsmenulines",
+   "fieldtype": "Table",
+   "label": "Lunch Meals Menu Items",
+   "options": "Menu Lines"
+  },
+  {
+   "fieldname": "lunchother_section",
+   "fieldtype": "Section Break",
+   "label": "Lunch Other Menu"
+  },
+  {
+   "fieldname": "lunchotherstarttime",
+   "fieldtype": "Time",
+   "label": "Lunch Other Start Time",
+   "reqd": 0
+  },
+  {
+   "fieldname": "column_break_lunchother_time",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "lunchotherendtime",
+   "fieldtype": "Time",
+   "label": "Lunch Other End Time",
+   "mandatory_depends_on": "eval:doc.lunchothermenulines && doc.lunchothermenulines.length > 0"
+  },
+  {
+   "fieldname": "lunchother_items_break",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "lunchothermenulines",
+   "fieldtype": "Table",
+   "label": "Lunch Other Menu Items",
+   "options": "Menu Lines"
+  },
+  {
+   "fieldname": "snacks_section",
+   "fieldtype": "Section Break",
+   "label": "Snacks Menu"
+  },
+  {
+   "fieldname": "snacksstarttime",
+   "fieldtype": "Time",
+   "label": "Snacks Start Time",
+   "reqd": 0
+  },
+  {
+   "fieldname": "column_break_snacks_time",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "snacksendtime",
+   "fieldtype": "Time",
+   "label": "Snacks End Time",
+   "mandatory_depends_on": "eval:doc.snacksmenulines && doc.snacksmenulines.length > 0"
+  },
+  {
+   "fieldname": "snacks_items_break",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "snacksmenulines",
+   "fieldtype": "Table",
+   "label": "Snacks Menu Items",
+   "options": "Menu Lines"
+  },
+  {
+   "fieldname": "dinner_section",
+   "fieldtype": "Section Break",
+   "label": "Dinner Menu"
+  },
+  {
+   "fieldname": "dinnerstarttime",
+   "fieldtype": "Time",
+   "label": "Dinner Start Time",
+   "reqd": 0
+  },
+  {
+   "fieldname": "column_break_dinner_time",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dinnerendtime",
+   "fieldtype": "Time",
+   "label": "Dinner End Time",
+   "mandatory_depends_on": "eval:doc.dinnermenulines && doc.dinnermenulines.length > 0"
+  },
+  {
+   "fieldname": "dinner_items_break",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "dinnermenulines",
+   "fieldtype": "Table",
+   "label": "Dinner Menu Items",
+   "options": "Menu Lines"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "POS Menu",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-07-13 12:51:40.973584",
+ "modified_by": "Administrator",
+ "module": "Frappe Ticktix",
+ "name": "POS Menu",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,1 @@
+# Branding plugin - Logo and UI customization
